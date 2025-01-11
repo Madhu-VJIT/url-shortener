@@ -1,0 +1,71 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/urls":
+    get:
+      summary: Lists all URLs
+      tags:
+      - URLs
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: URLs found
+        '401':
+          description: unauthorized
+    post:
+      summary: Creates a shortened URL
+      tags:
+      - URLs
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '201':
+          description: URL created
+        '401':
+          description: unauthorized
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: object
+                  properties:
+                    long_url:
+                      type: string
+                      example: https://example.com
+                  required:
+                  - long_url
+  "/api/v1/urls/{id}":
+    delete:
+      summary: Deletes a URL
+      tags:
+      - URLs
+      security:
+      - Bearer: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: URL deleted
+        '401':
+          description: unauthorized
+        '404':
+          description: URL not found
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com

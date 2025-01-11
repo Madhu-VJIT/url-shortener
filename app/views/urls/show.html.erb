@@ -1,0 +1,21 @@
+<div class="max-w-md mx-auto mt-8">
+  <div class="bg-white shadow rounded-lg p-6">
+    <h1 class="text-2xl font-bold mb-4">Your Shortened URL</h1>
+    
+    <div class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Original URL:</label>
+        <p class="mt-1 text-sm text-gray-900 break-all"><%= @url.long_url %></p>
+      </div>
+      
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Shortened URL:</label>
+        <p class="mt-1 text-sm text-gray-900">
+          <%= link_to short_url(@url.short_url), short_url(@url.short_url), class: "text-indigo-600 hover:text-indigo-900" %>
+        </p>
+      </div>
+    </div>
+    
+    <%= link_to "Shorten Another URL", new_url_path, class: "mt-4 inline-block py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+  </div>
+</div>
